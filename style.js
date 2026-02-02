@@ -376,3 +376,82 @@ if (savedTheme === 'dark') {
     document.body.classList.add('dark-theme');
 }
 */
+
+// ===========================
+// Certificate Modal Functions
+// ===========================
+function openCertificateModal(certificatePath) {
+    const modal = document.getElementById('certificateModal');
+    const iframe = document.getElementById('certificateFrame');
+    const downloadLink = document.getElementById('downloadCertificate');
+    
+    // Set the certificate source
+    iframe.src = certificatePath;
+    downloadLink.href = certificatePath;
+    
+    // Show the modal
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+}
+
+function closeCertificateModal() {
+    const modal = document.getElementById('certificateModal');
+    const iframe = document.getElementById('certificateFrame');
+    
+    // Hide the modal
+    modal.classList.remove('active');
+    document.body.style.overflow = ''; // Restore scrolling
+    
+    // Clear the iframe source after a short delay
+    setTimeout(() => {
+        iframe.src = '';
+    }, 300);
+}
+
+// Close modal when pressing Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        const modal = document.getElementById('certificateModal');
+        if (modal && modal.classList.contains('active')) {
+            closeCertificateModal();
+        }
+    }
+});
+
+// ===========================
+// Certificate Card Animation
+// ===========================
+document.addEventListener('DOMContentLoaded', () => {
+    const certCards = document.querySelectorAll('.cert-card');
+    
+    certCards.forEach((card, index) => {
+        // Add staggered animation
+        card.style.animationDelay = `${index * 0.1}s`;
+        
+        // Add pul se effect to view button on hover
+        const viewBtn = card.querySelector('.cert-view-btn');
+        if (viewBtn) {
+            card.addEventListener('mouseenter', () => {
+                viewBtn.style.animation = 'pulse 1s infinite';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                viewBtn.style.animation = '';
+            });
+        }
+    });
+});
+
+// Add pulse animation
+const pulseStyle = document.createElement('style');
+pulseStyle.textContent = `
+    @keyframes pulse {
+        0%, 100% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.05);
+        }
+    }
+`;
+document.head.appendChild(pulseStyle);
