@@ -544,22 +544,57 @@
                     </div>
                 </div>
                 <div class="contact-form-container">
-                    <form class="contact-form" id="contactForm">
-                        <div class="form-group">
-                            <input type="text" id="name" name="name" placeholder="Your Name" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" id="email" name="email" placeholder="Your Email" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" id="subject" name="subject" placeholder="Subject" required>
-                        </div>
-                        <div class="form-group">
-                            <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Send Message</button>
-                    </form>
-                </div>
+
+  <!-- Success & Error Messages -->
+  <div class="form-status success" data-fs-success></div>
+  <div class="form-status error" data-fs-error></div>
+
+  <form class="contact-form" id="contactForm">
+
+    <div class="form-group">
+      <input type="text" id="name" name="name" placeholder="Your Name" data-fs-field required>
+      <span data-fs-error="name"></span>
+    </div>
+
+    <div class="form-group">
+      <input type="email" id="email" name="email" placeholder="Your Email" data-fs-field required>
+      <span data-fs-error="email"></span>
+    </div>
+
+    <div class="form-group">
+      <input type="text" id="subject" name="subject" placeholder="Subject" data-fs-field required>
+      <span data-fs-error="subject"></span>
+    </div>
+
+    <div class="form-group">
+      <textarea id="message" name="message" rows="5" placeholder="Your Message" data-fs-field required></textarea>
+      <span data-fs-error="message"></span>
+    </div>
+
+    <!-- Hidden extras -->
+    <input type="hidden" name="_subject" value="New Portfolio Message">
+    <input type="text" name="_gotcha" style="display:none">
+
+    <button type="submit" class="btn btn-primary" data-fs-submit-btn>
+      Send Message
+    </button>
+
+  </form>
+</div>
+
+<!-- Formspree Script -->
+<script>
+  window.formspree = window.formspree || function () {
+    (formspree.q = formspree.q || []).push(arguments);
+  };
+
+  formspree('initForm', {
+    formElement: '#contactForm',
+    formId: 'xykbbgkr'
+  });
+</script>
+
+<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
             </div>
         </div>
     </section>
