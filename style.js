@@ -126,29 +126,6 @@ animatedElements.forEach(element => {
 // ===========================
 // Contact Form Handler
 // ===========================
-const contactForm = document.getElementById('contactForm');
-
-contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-   
-    // Get form data
-    const formData = {
-        name: document.getElementById('name').value,
-        email: document.getElementById('email').value,
-        subject: document.getElementById('subject').value,
-        message: document.getElementById('message').value
-    };
-   
-    // Here you would typically send the data to a server
-    // For now, we'll just show a success message
-    console.log('Form submitted:', formData);
-   
-    // Show success message
-    alert('Thank you for your message! I will get back to you soon.');
-   
-    // Reset form
-    contactForm.reset();
-});
 
 // ===========================
 // Typing Effect for Hero Subtitle
